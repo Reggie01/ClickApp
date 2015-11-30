@@ -1,2 +1,1 @@
-#Voting app
 # ClementimeTut 
