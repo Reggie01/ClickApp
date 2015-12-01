@@ -1,5 +1,5 @@
 ﻿'use strict';
-console.log("app starting");
+
 var express = require('express'),
         routes = require('./app/routes/index.js'),
   mongoose = require('mongoose'), 
@@ -7,7 +7,11 @@ var express = require('express'),
       session = require('express-session');
 
 var app = express();
-require('dotenv').load();
+if(!process.env.APP_URL) {
+  console.log("loading env file...");
+  require('dotenv').load();
+}
+
 require('./app/config/passport')(passport);
 
 mongoose.connect(process.env.MONGO_URI); 
