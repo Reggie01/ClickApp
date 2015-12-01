@@ -1,18 +1,6 @@
 ﻿'use strict';
 
 var express = require('express'),
-            app = express();
-
-app.set('port', (process.env.PORT || 5000));
-app.route('/')
-  .get(function(req, res) {
-     res.send("hello");
-  })
-
-app.listen(app.get('port'), function() {
-   console.log("Listening on port: " + app.get('port') + "...");
-});
-/* var express = require('express'),
         routes = require('./app/routes/index.js'),
   mongoose = require('mongoose'), 
     passport  = require('passport'),
@@ -42,7 +30,7 @@ routes(app, passport);
 var port = process.env.PORT || 8090;
 app.listen(port, function() {
     console.log('Listening on port '+ port + '...');
-}); */
+});
 
 
 
