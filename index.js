@@ -1,6 +1,7 @@
 ﻿'use strict';
-
-var express = require('express'),
+console.log(process.env.PORT);
+console.log("starting app");
+/* var express = require('express'),
         routes = require('./app/routes/index.js'),
   mongoose = require('mongoose'), 
     passport  = require('passport'),
@@ -12,13 +13,13 @@ if(!process.env.APP_URL) {
   require('dotenv').load();
 }
 
-require('./app/config/passport')(passport);
+require('./app/config/passport')(passport); 
 
 mongoose.connect(process.env.MONGO_URI); 
     
 app.use('/controllers', express.static(__dirname + '/app/controllers'));    
 app.use('/public', express.static(__dirname  + '/public'));
-app.use('/common', express.static(process.cwd() + '/app/common'));
+app.use('/common', express.static(__dirname + '/app/common'));
 
 app.use(session({
    secret: 'secretClementine', 
@@ -37,7 +38,7 @@ app.listen(port, function() {
 });
 
 
-
+*/
 
 
 
