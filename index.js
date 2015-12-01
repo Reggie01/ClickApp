@@ -9,7 +9,9 @@ var express = require('express'),
       session = require('express-session');
 */         app = express();
 
-app.set('port', process.env.PORT || 5000);
+app.set('port', (process.env.PORT || 5000));
+
+app.use(express.static(process.cwd() + '/public'));
 
 app.route('/')
   .get(function(req, res) {
