@@ -1,13 +1,26 @@
 ﻿'use strict';
 console.log(process.env.PORT);
 console.log("starting app");
-/* var express = require('express'),
-        routes = require('./app/routes/index.js'),
+
+var express = require('express'),
+/*        routes = require('./app/routes/index.js'),
   mongoose = require('mongoose'), 
     passport  = require('passport'),
       session = require('express-session');
+*/         app = express();
 
-var app = express();
+app.set('port', process.env.PORT || 5000);
+
+app.route('/')
+  .get(function(req, res) {
+     res.send("GET request to homepage");
+  })
+  
+app.listen(app.get('port'), function() {
+   console.log("Listening on port: " + app.get('port') + "...");
+});
+
+/*
 if(!process.env.APP_URL) {
   console.log("loading env file...");
   require('dotenv').load();
