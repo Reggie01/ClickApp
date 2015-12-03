@@ -30,6 +30,27 @@ angular
      this.getColor = function() {
         return color;
      }
+  }).
+  service('userValidation', function($http, $q) {
+     this.userNameValidate = function(name) {
+        if(name == null || name.length === 0 || name === "") {
+           console.log("not valid");
+           return false;
+        }
+        return true;
+     }
+     
+     this.emailValidation = function(email) {
+        if(email == null || email.length === 0 || email === "") {
+           return "Not a valid user email";
+        }
+     }
+     
+     this.passwordValidation = function(password) {
+        if(password == null || password.length === 0 || password === "") {
+           return "Not a valid user password";
+        }
+     }
   })
   .controller('clickController', ['$scope', '$resource', '$http', "myUser", function($scope, $resource, $http, myUser) {
 
@@ -61,19 +82,50 @@ angular
             for(var props in data) {
               myUser.user[props] = data[props];
             }
-            console.log(myUser.user);
          }, function(data) {
             console.log(data);
          })
      }
      
-     console.log(myUser.user);
+     //console.log(myUser.user);
      
      $scope.createUser();
      
      $scope.displayname = "foo";
      
      $scope.color = myUser.getColor();
-  }]);
+  }]).
+  controller('ContactCtrl', ['$scope', '$resource', '$http', 'userValidation', function($scope, $resource, $http, myUser, userValidation) {
+      $scope.user = {};
+
+      var validPhoneNo = function () {
+     
+      }
+     $scope.validateForm = function() {
+       var validation = false;
+       
+       if(!userValidation.userNameValidate($scope.user.name)) {
+         console.log("User name is invalid");    
+       } else if(!userValidation.emailValidation($scope.user.email)) {
+         console.log("User email is invalid");         
+       } else if(!userValidation.passwordValidation($scope.user.password)) {
+          console.log("Password is invalid");
+       }
+       
+     };
+  }]).
+  controller('SignUpCtrl', ['$scope', '$http', '$resource','userValidation', function($scope, $http, $resouce, userValidation) {
+   
+     $scope.validateForm = function() {
+      console.log("hello");
+        if(!userValidation.userNameValidate($scope.user.name)){
+           console.log("User name is invalid.");
+        } else if(!userValidation.emailValidation($scope.user.email)){
+           console.log("User email is invalid.");
+        } else if(!userValidation.passwordValidation($scope.user.password)){
+           console.log("Password is invalid");
+        }
+     }
+  }])
 
 })();

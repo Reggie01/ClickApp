@@ -16,10 +16,15 @@ module.exports = function (app, passport) {
 	var clickHandler = new ClickHandler();
 
 	app.route('/')
-		.get(isLoggedIn, function (req, res) {
+		.get(/* isLoggedIn,  */function (req, res) {
 			res.sendFile(path + '/public/index.html');
 		});
-
+  
+  app.route('/signup')
+    .get(function(req, res){
+       res.sendFile(path + '/public/signup.html');
+    })
+  
 	app.route('/login')
 		.get(function (req, res) {
 			res.sendFile(path + '/public/login.html');
@@ -46,7 +51,7 @@ module.exports = function (app, passport) {
 
 	app.route('/auth/github/callback')
 		.get(passport.authenticate('github', {
-			successRedirect: '/',
+			successRedirect: '/dashboard.html',
 			failureRedirect: '/login'
 		}));
 
